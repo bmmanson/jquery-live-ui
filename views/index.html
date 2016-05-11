@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+{% block title %}Your Trip{% endblock %}
+
+{% block content %}
+<div id="app" class="clearfix">
+  <div class="map-container col-sm-8 col-lg-9">
+    <div>
+      <div id="map-canvas"></div>
+    </div>
+  </div>
+  <div id="control-panel" class="col-sm-4 col-lg-3 clearfix">
+    <div class="col-xs-6 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body" id="options-panel">
+          <div id="hotel-form">
+            <h4>Hotels</h4>
+            <select data-type="hotel" id="hotel-choices">
+              <option value=""> Hotel </option>
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+          <div id="restaurant-form">
+            <h4>Restaurants</h4>
+            <select data-type="restaurant" id="restaurant-choices">
+              <option value=""> Restaurant </option>
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+          <div id="activity-form">
+            <h4>Activities</h4>
+            <select data-type="activity" id="activity-choices">
+              <option value=""> Activity </option>
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-12">
+      <h3 id="day-title-field">
+        <span id="day-title">
+          <span>Day 1</span>
+          <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+        </span>
+      </h3>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="day-buttons">
+            <button class="btn btn-circle day-btn">1</button>
+            <!-- <button class="btn btn-circle day-btn current-day">2</button>
+            <button class="btn btn-circle day-btn">3</button> -->
+            <button class="btn btn-circle" id="day-add">+</button>
+          </div>
+        </div>
+        <div class="panel-body" id="itinerary">
+          <div>
+            <h4>My Hotel</h4>
+            <ul class="list-group">
+              <div class="itinerary-item hotel-form">
+
+              </div>
+            </ul>
+          </div>
+          <div>
+            <h4>My Restaurants</h4>
+            <ul class="list-group">
+              <div class="itinerary-item restaurant-form">
+
+              </div>
+            </ul>
+          </div>
+          <div>
+            <h4>My Activities</h4>
+            <ul class="list-group">
+              <div class="itinerary-item activities-form">
+
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/jquery/jquery.min.js"></script>
+<script> {% autoescape false %}
+var hotels = {{ templateHotels | json }};
+var restaurants = {{ templateRestaurants | json }};
+var activities = {{ templateActivities | json }};
+console.log(hotels);
+{% endautoescape %}
+</script>
+<script src="/js/front-end-code.js"></script>
+
+
+{% endblock %}
